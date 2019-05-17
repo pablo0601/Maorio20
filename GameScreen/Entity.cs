@@ -15,5 +15,12 @@ namespace GameScreen
         {
             deltaY = deltaY + (int)9.81; // Number is acceleration due to gravity
         }
+
+        public void DirectionX(int speed)
+        {
+            deltaX = deltaX + speed;
+            //Console.WriteLine("Forgot To Implement");
+        }
+       
     }
 }

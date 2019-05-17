@@ -8,6 +8,9 @@ namespace GameScreen
 {
     class Mario : Entity
     {
-
+        public override void Left()
+        {
+            base.Left();
+        }
     }
 }
