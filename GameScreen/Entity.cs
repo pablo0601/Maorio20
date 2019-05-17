@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace GameScreen
 {
-    interface Entity
+    class Entity
     {
+        int deltaX;
+        int deltaY;
 
+        private void Gravity()
+        {
+            deltaY = deltaY + (int)9.81; // Number is acceleration due to gravity
+        }
     }
 }
