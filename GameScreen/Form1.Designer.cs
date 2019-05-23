@@ -28,21 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.MarioHitBox = new System.Windows.Forms.PictureBox();
             this.Ground = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.MarioHitBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Ground)).BeginInit();
             this.SuspendLayout();
-            // 
-            // MarioHitBox
-            // 
-            this.MarioHitBox.Image = global::GameScreen.Properties.Resources.Mario1;
-            this.MarioHitBox.Location = new System.Drawing.Point(362, 246);
-            this.MarioHitBox.Name = "MarioHitBox";
-            this.MarioHitBox.Size = new System.Drawing.Size(12, 16);
-            this.MarioHitBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.MarioHitBox.TabIndex = 1;
-            this.MarioHitBox.TabStop = false;
             // 
             // Ground
             // 
@@ -59,22 +47,19 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.MarioHitBox);
             this.Controls.Add(this.Ground);
             this.Name = "MarioBros";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.MarioHitBox)).EndInit();
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.Ground)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.PictureBox Ground;
-        private System.Windows.Forms.PictureBox MarioHitBox;
     }
 }
 
