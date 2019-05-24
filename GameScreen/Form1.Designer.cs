@@ -29,7 +29,9 @@
         private void InitializeComponent()
         {
             this.Ground = new System.Windows.Forms.PictureBox();
+            this.Mario1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.Ground)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Mario1)).BeginInit();
             this.SuspendLayout();
             // 
             // Ground
@@ -42,17 +44,29 @@
             this.Ground.TabIndex = 0;
             this.Ground.TabStop = false;
             // 
+            // Mario1
+            // 
+            this.Mario1.BackColor = System.Drawing.Color.Transparent;
+            this.Mario1.Image = global::GameScreen.Properties.Resources.Mario1;
+            this.Mario1.Location = new System.Drawing.Point(385, 169);
+            this.Mario1.Name = "Mario1";
+            this.Mario1.Size = new System.Drawing.Size(10, 15);
+            this.Mario1.TabIndex = 1;
+            this.Mario1.TabStop = false;
+            // 
             // MarioBros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Mario1);
             this.Controls.Add(this.Ground);
             this.Name = "MarioBros";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.Ground)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Mario1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -60,6 +74,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox Ground;
+        public System.Windows.Forms.PictureBox Mario1;
     }
 }
 

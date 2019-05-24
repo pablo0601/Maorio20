@@ -10,22 +10,19 @@ namespace GameScreen
 {
     class Mario : Entity
     {
-        int NetX;
-        int NetY;
+        MarioBros bross;
 
-        PictureBox MarioHitBox ;
+ 
 
-        public Mario(int x , int y)
+        public Mario(int x , int y, MarioBros bros)
         {
-            MarioHitBox = new PictureBox();
-            MarioHitBox.Location = new Point(x, y);
-            MarioHitBox.Enabled = true;
-            MarioHitBox.Fo;
+            bross = bros;
+            HitBox = bros.Mario1;
         }
 
         public void Dissapear()
         {
-            MarioHitBox.Enabled = false;
+           HitBox.Visible = false;
         }
     }
 }

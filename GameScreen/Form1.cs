@@ -21,7 +21,7 @@ namespace GameScreen
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            mario = new Mario( 99, 99);
+            mario = new Mario(99, 99, this);
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -30,16 +30,21 @@ namespace GameScreen
             if (e.KeyCode == Keys.A)
             {
                 Debug.WriteLine("A");
-                mario.Dissapear();
+                mario.DirectionX(-3);
             }
             if (e.KeyCode == Keys.D)
             {
                 Debug.WriteLine("D");
-                mario.Dissapear();
+                mario.DirectionX(3);
             }
-            if (e.KeyCode == Keys.Space)
+            if (e.KeyCode == Keys.Left)
             {
                 Debug.WriteLine("Jump");
+                mario.DirectionY();
+            }
+            if (e.KeyCode == Keys.Up)
+            {
+                Debug.WriteLine("Run");
                 mario.Dissapear();
             }
         }
