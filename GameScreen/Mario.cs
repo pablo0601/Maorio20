@@ -10,13 +10,8 @@ namespace GameScreen
 {
     class Mario : Entity
     {
-        MarioBros bross;
-
- 
-
         public Mario(int x , int y, MarioBros bros)
         {
-            bross = bros;
             HitBox = bros.Mario1;
         }
 
@@ -24,5 +19,6 @@ namespace GameScreen
         {
            HitBox.Visible = false;
         }
+
     }
 }

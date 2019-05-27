@@ -11,24 +11,30 @@ namespace GameScreen
     class Entity
     {
         int deltaY;
-        int netY;
-        int netX;
-        
+
+        bool canJump = true;
         public PictureBox HitBox;
 
-        public void DirectionY()
-        {   
+        public void Gravity()
+        {
             deltaY = deltaY + (int)1; // Number is acceleration due to gravity
             HitBox.Location = new Point(HitBox.Location.X, HitBox.Location.Y + deltaY);
         }
 
         public void DirectionX(int speed)
         {
-
             HitBox.Location = new Point(HitBox.Location.X + speed, HitBox.Location.Y);
         }
 
- 
-       
+        public void Jump(int speed)
+        {
+            if (canJump == true) { deltaY = deltaY + speed; }
+            canJump = false;
+        }
+
+        public void checkColide(Block block)
+        {
+            
+        }
     }
 }
