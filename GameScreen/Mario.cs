@@ -10,14 +10,14 @@ namespace GameScreen
 {
     class Mario : Entity
     {
-        public Mario(int x , int y, MarioBros bros)
+        public Mario(MarioBros bros)
         {
-            HitBox = bros.Mario1;
+            hitBox = bros.Mario1;
         }
 
         public void Dissapear()
         {
-           HitBox.Visible = false;
+           hitBox.Visible = false;
         }
 
     }

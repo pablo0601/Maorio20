@@ -18,8 +18,10 @@ namespace GameScreen
         bool dDown = false;
         bool leftDown = false;
         bool upDown = false;
+        int runSpeed = 3;
 
         Mario mario;
+        public Block ground;
         public MarioBros()
         {
             InitializeComponent();
@@ -27,7 +29,8 @@ namespace GameScreen
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            mario = new Mario(99, 99, this);
+            mario = new Mario(this);
+            ground = new Block(this);
             timer1.Start();
         }
 
@@ -46,10 +49,7 @@ namespace GameScreen
             if (e.KeyCode == Keys.D) { dDown = false; }
         }
 
-        private void Ground_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -58,7 +58,7 @@ namespace GameScreen
                 Debug.WriteLine("A");
                 if (dDown != true)
                 {
-                    mario.DirectionX(-3);
+                    mario.DirectionX(-1 * runSpeed);
                 }
             }
             if (dDown == true)
@@ -66,21 +66,23 @@ namespace GameScreen
                 Debug.WriteLine("D");
                 if (aDown != true)
                 {
-                    mario.DirectionX(3);
+                    mario.DirectionX(runSpeed);
                 }
 
             }
             if (leftDown == true)
             {
                 Debug.WriteLine("Jump");
-                mario.Jump(-10);
+                mario.Jump(-15);
             }
             if (upDown == true)
             {
                 Debug.WriteLine("Run");
-                mario.Dissapear();
+                
+                
             }
-            mario.Gravity();
+            mario.Gravity(this);
+
         }
     }
 }

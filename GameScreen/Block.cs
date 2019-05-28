@@ -7,9 +7,9 @@ using System.Windows.Forms;
 
 namespace GameScreen
 {
-    class Block
+     public class Block
     {
-        PictureBox hitBox;
+        public PictureBox hitBox;
         public Block(MarioBros bros)
         {
             hitBox = bros.Ground;

@@ -12,18 +12,20 @@ namespace GameScreen
     {
         int deltaY;
 
-        bool canJump = true;
-        public PictureBox HitBox;
+        bool canJump = false;
+        public PictureBox hitBox;
 
-        public void Gravity()
+        public void Gravity(MarioBros bros)
         {
             deltaY = deltaY + (int)1; // Number is acceleration due to gravity
-            HitBox.Location = new Point(HitBox.Location.X, HitBox.Location.Y + deltaY);
+            blockColide(bros.ground);
+            //hitBox.Location = new Point(hitBox.Location.X, hitBox.Location.Y + deltaY);
+
         }
 
         public void DirectionX(int speed)
         {
-            HitBox.Location = new Point(HitBox.Location.X + speed, HitBox.Location.Y);
+            hitBox.Location = new Point(hitBox.Location.X + speed, hitBox.Location.Y);
         }
 
         public void Jump(int speed)
@@ -32,9 +34,17 @@ namespace GameScreen
             canJump = false;
         }
 
-        public void checkColide(Block block)
+        public void blockColide(Block block)
         {
-            
+            Rectangle bounds = hitBox.Bounds;
+            bounds.Y = bounds.Y + deltaY;
+            if (bounds.IntersectsWith(block.hitBox.Bounds)) // Y bounds Check while Down
+            {
+                bounds.Y = bounds.Y - (bounds.Bottom - block.hitBox.Bounds.Y) ;
+                deltaY = 0;
+                canJump = true;
+            }
+            hitBox.Location = bounds.Location;
         }
     }
 }

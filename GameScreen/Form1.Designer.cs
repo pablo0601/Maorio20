@@ -45,7 +45,6 @@
             this.Ground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Ground.TabIndex = 0;
             this.Ground.TabStop = false;
-            this.Ground.Click += new System.EventHandler(this.Ground_Click);
             // 
             // Mario1
             // 
