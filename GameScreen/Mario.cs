@@ -10,15 +10,22 @@ namespace GameScreen
 {
     class Mario : Entity
     {
+        //CONSTRUCTOR
         public Mario(MarioBros bros)
         {
             hitBox = bros.Mario1;
         }
 
+        //MARIO DISSAPEAR
         public void Dissapear()
         {
-           hitBox.Visible = false;
+           hitBox.Visible = false; // Makes Mario Invisable
         }
 
+        //MARIO RUN
+        public MarioRun()
+        {
+           
+        }
     }
 }

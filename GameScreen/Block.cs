@@ -10,6 +10,8 @@ namespace GameScreen
      public class Block
     {
         public PictureBox hitBox;
+        
+        //BLOCK CONSTRUCTOR
         public Block(MarioBros bros)
         {
             hitBox = bros.Ground;
