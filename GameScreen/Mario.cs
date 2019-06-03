@@ -22,10 +22,5 @@ namespace GameScreen
            hitBox.Visible = false; // Makes Mario Invisable
         }
 
-        //MARIO RUN
-        public MarioRun()
-        {
-           
-        }
     }
 }

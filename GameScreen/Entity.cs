@@ -21,15 +21,16 @@ namespace GameScreen
         public PictureBox hitBox;
 
         //GRAVITY
-        public void Gravity(MarioBros bros)
+        public void Gravity(Block bros)
         {
             deltaY = deltaY + (int)1; // Number is acceleration due to gravity
-            blockColide(bros.ground);
-            //hitBox.Location = new Point(hitBox.Location.X, hitBox.Location.Y + deltaY);
-
+            blockColide(bros);
         }
 
-        //LEFT AND RIGHT MOVEMENT
+        /// <summary>
+        /// Moves the Entity in the X direction
+        /// </summary>
+        /// <param name="speed">The amount to move by</param>
         public void DirectionX(int speed)
         {
             hitBox.Location = new Point(hitBox.Location.X + speed, hitBox.Location.Y);

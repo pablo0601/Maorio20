@@ -32,8 +32,10 @@
             this.Ground = new System.Windows.Forms.PictureBox();
             this.Mario1 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.Wall_1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.Ground)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Mario1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Wall_1)).BeginInit();
             this.SuspendLayout();
             // 
             // Ground
@@ -61,11 +63,22 @@
             this.timer1.Interval = 17;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // Wall_1
+            // 
+            this.Wall_1.Image = global::GameScreen.Properties.Resources.Ground;
+            this.Wall_1.Location = new System.Drawing.Point(507, 300);
+            this.Wall_1.Name = "Wall_1";
+            this.Wall_1.Size = new System.Drawing.Size(64, 64);
+            this.Wall_1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.Wall_1.TabIndex = 2;
+            this.Wall_1.TabStop = false;
+            // 
             // MarioBros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Wall_1);
             this.Controls.Add(this.Mario1);
             this.Controls.Add(this.Ground);
             this.Name = "MarioBros";
@@ -75,7 +88,9 @@
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.Ground)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Mario1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Wall_1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -83,6 +98,7 @@
         public System.Windows.Forms.PictureBox Mario1;
         private System.Windows.Forms.Timer timer1;
         public System.Windows.Forms.PictureBox Ground;
+        private System.Windows.Forms.PictureBox Wall_1;
     }
 }
 

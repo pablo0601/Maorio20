@@ -8,13 +8,13 @@ using System.Windows.Forms;
 namespace GameScreen
 {
      public class Block
-    {
+     {
         public PictureBox hitBox;
         
         //BLOCK CONSTRUCTOR
-        public Block(MarioBros bros)
+        public Block(PictureBox bros)
         {
-            hitBox = bros.Ground;
+            hitBox = bros;
         }
-    }
+     }
 }

@@ -20,8 +20,10 @@ namespace GameScreen
         bool wDown = false;
         bool leftDown = false;
         bool upDown = false;
+        double direction;
         public int runSpeed = 3;
         public Block ground;
+        public Block wall;
         Mario mario;
 
         //Initialize Components
@@ -34,20 +36,21 @@ namespace GameScreen
         private void Form1_Load(object sender, EventArgs e)
         {
             mario = new Mario(this);
-            ground = new Block(this);
+            ground = new Block(Ground);
+            wall = new Block(Wall_1);
             timer1.Start();
         }
 
         // Checking for Key Pressed down 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Left) { leftDown = true; } 
-            if (e.KeyCode == Keys.Up) { upDown = true; }     
-            if (e.KeyCode == Keys.A) { aDown = true; }       
+            if (e.KeyCode == Keys.Left) { leftDown = true; }
+            if (e.KeyCode == Keys.Up) { upDown = true; }
+            if (e.KeyCode == Keys.A) { aDown = true; }
             if (e.KeyCode == Keys.D) { dDown = true; }
             if (e.KeyCode == Keys.W) { wDown = true; }
             if (e.KeyCode == Keys.S) { sDown = true; }
-            
+
         }
 
         // Checking for Key Released
@@ -65,23 +68,29 @@ namespace GameScreen
         // What happens when Timer Ticks
         private void timer1_Tick(object sender, EventArgs e)
         {
-            // if Key Pressed Manipulate Mario
-            if (aDown == true)
-            {
-                Debug.WriteLine("A");
-                if (dDown != true) // making sure mario stays still if left and right pressed
-                {
-                    mario.DirectionX(-1 * runSpeed); // Move Mario
-                }
-            }
-            if (dDown == true)
-            {
-                Debug.WriteLine("D");
-                if (aDown != true) // making sure mario stays still if left and right pressed
-                {
-                    mario.DirectionX(runSpeed);// Move Mario
-                }
 
+            // if Key Pressed Manipulate Mario
+            if (mario.canJump == true)
+            {
+                //Checks the runflag and sets the walking speed accordingly
+                runSpeed = leftDown ? 6 : 3;
+                direction = 0;
+                if (aDown == true)
+                {
+                    Debug.WriteLine("A");
+                    if (dDown != true) // making sure mario stays still if left and right pressed
+                    {
+                        direction = -1;
+                    }
+                }
+                if (dDown == true)
+                {
+                    Debug.WriteLine("D");
+                    if (aDown != true) // making sure mario stays still if left and right pressed
+                    {
+                        direction = 1;
+                    }
+                }
             }
             if (wDown == true)              //No Function in Mario, Just added if Needed
             {
@@ -91,21 +100,13 @@ namespace GameScreen
             {
                 Debug.WriteLine("S");
             }
-
-            if (leftDown == true)           //Mario Run
-            {
-                Debug.WriteLine("Run");
-                runSpeed = 6;
-            }
-            if (leftDown == false)          //Mario No longer Running
-            {
-                runSpeed = 3;
-            }
             if (upDown == true)             //Mario Jump
             {
                 Debug.WriteLine("Jump");
                 mario.Jump(-15);
             }
+
+            mario.DirectionX((int)(runSpeed * direction));
 
             mario.Gravity(this);            //Run Gravity 
 
