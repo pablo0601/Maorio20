@@ -25,7 +25,7 @@ namespace GameScreen
         public Block ground;
         public Block wall;
         Mario mario;
-
+        List<Block> blocks = new List<Block>();
         //Initialize Components
         public MarioBros()
         {
@@ -39,6 +39,8 @@ namespace GameScreen
             ground = new Block(Ground);
             wall = new Block(Wall_1);
             timer1.Start();
+            blocks.Add(ground);
+            blocks.Add(wall);
         }
 
         // Checking for Key Pressed down 
@@ -103,12 +105,15 @@ namespace GameScreen
             if (upDown == true)             //Mario Jump
             {
                 Debug.WriteLine("Jump");
-                mario.Jump(-15);
+                mario.Jump(-10);
             }
 
-            mario.DirectionX((int)(runSpeed * direction));
-
-            mario.Gravity(this);            //Run Gravity 
+            //mario.DirectionX((int)(runSpeed * direction));
+            mario.Movement(blocks,(int)( runSpeed * direction));
+            
+                mario.Gravity(blocks);            //Run Gravity 
+             
+            
 
         }
     }
