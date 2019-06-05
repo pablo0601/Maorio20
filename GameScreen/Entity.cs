@@ -15,18 +15,20 @@ namespace GameScreen
 
         //Variable Decleration
         int deltaY;
-        int deltaX;
         public bool canJump = false;
 
         //Picture Box Stuff
         public PictureBox hitBox;
 
-        //GRAVITY
+        /// <summary>
+        /// Creates and applies Gravity
+        /// </summary>
+        /// <param name="blocks">list of blocks for collision</param>
         public void Gravity(List<Block> blocks)
         {
             deltaY = deltaY + (int)1; // Number is acceleration due to gravity
            
-                Movement(blocks,0);
+                VerticalMovement(blocks,0);
             
 
         }
@@ -46,14 +48,14 @@ namespace GameScreen
         /// </summary>
         /// <param name="block">The blocks and walls Mario collides with</param>
         /// <param name="speed">The Distance to move by</param>
-        public void Movement(List<Block> blocks, int speed)
+        public void VerticalMovement(List<Block> blocks, int speed)
         {
             Rectangle bounds = hitBox.Bounds; //Creates Rectangle around Hitbox
             bounds.Y = bounds.Y + deltaY;
             bounds.X = bounds.X + speed;
             foreach (Block block in blocks)
             {
-                if (bounds.IntersectsWith(block.hitBox.Bounds)) // Y bounds Check while Mario is going Down
+                if (bounds.IntersectsWith(block.hitBox.Bounds)) //If mario intersects with block
                 {
                     bounds.Y = bounds.Y - (bounds.Bottom - block.hitBox.Bounds.Y);// Move Rectangle Vertically to Checked Location
                     deltaY = 0; // While on ground Gravity does not pull Mario through ground
@@ -61,6 +63,10 @@ namespace GameScreen
                 } 
             }
             hitBox.Location = bounds.Location; // Move mario to new location of Rectangle
+        }
+        public void HorizontalMovement
+        {
+
         }
     }
 }
