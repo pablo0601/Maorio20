@@ -24,14 +24,7 @@ namespace GameScreen
         /// Creates and applies Gravity
         /// </summary>
         /// <param name="blocks">list of blocks for collision</param>
-        public void Gravity(List<Block> blocks)
-        {
-            deltaY = deltaY + (int)1; // Number is acceleration due to gravity
-           
-                VerticalMovement(blocks,0);
-            
 
-        }
 
         /// <summary>
         /// Makes Mario Jump
@@ -48,25 +41,43 @@ namespace GameScreen
         /// </summary>
         /// <param name="block">The blocks and walls Mario collides with</param>
         /// <param name="speed">The Distance to move by</param>
-        public void VerticalMovement(List<Block> blocks, int speed)
+        public void Movement(List<Block> blocks, int speed, bool isRight)
         {
-            Rectangle bounds = hitBox.Bounds; //Creates Rectangle around Hitbox
-            bounds.Y = bounds.Y + deltaY;
-            bounds.X = bounds.X + speed;
+            bool isUp = false;
+            Rectangle boundsY = hitBox.Bounds; //Creates Y Rectangle around Hitbox
+            Rectangle boundsX = hitBox.Bounds; //Creates X Rectangle around Hitbox
+            boundsY.Y = boundsY.Y + deltaY;
+            boundsX.X = boundsX.X + speed;
+
+
+            deltaY = deltaY + (int)1; // Number is acceleration due to gravity
+            isUp = deltaY > 0 ? false : true;
+
             foreach (Block block in blocks)
             {
-                if (bounds.IntersectsWith(block.hitBox.Bounds)) //If mario intersects with block
+                if (boundsY.IntersectsWith(block.hitBox.Bounds)) //If mario intersects with block
                 {
-                    bounds.Y = bounds.Y - (bounds.Bottom - block.hitBox.Bounds.Y);// Move Rectangle Vertically to Checked Location
+                    boundsY.Y = boundsY.Y - (boundsY.Bottom - block.hitBox.Bounds.Y);// Move Rectangle Vertically to Checked Location
                     deltaY = 0; // While on ground Gravity does not pull Mario through ground
                     canJump = true; // Mario can jump on Ground
-                } 
-            }
-            hitBox.Location = bounds.Location; // Move mario to new location of Rectangle
-        }
-        public void HorizontalMovement
-        {
+                }
 
+                if (isRight == true)
+                {
+                    if (boundsX.IntersectsWith(block.hitBox.Bounds))
+                    {
+                        boundsX.X = boundsX.X - (boundsX.Right - block.hitBox.Bounds.X);
+                    }
+                }
+                if (isRight == false)
+                {
+                    if (boundsX.IntersectsWith(block.hitBox.Bounds)) {boundsX.X = boundsX.X - block.hitBox.Bounds.X;}
+                }
+            }
+            hitBox.Top = boundsY.Top;    // Move mario Y to new Y location
+            hitBox.Left = boundsX.Left;  // Move mario X to new X location
+            
         }
+
     }
 }

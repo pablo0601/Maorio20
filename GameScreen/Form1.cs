@@ -14,7 +14,7 @@ namespace GameScreen
     public partial class MarioBros : Form
     {
         //Creating Variables
-        public bool directionR = true;
+        public bool isRight = true;
         bool aDown = false;
         bool dDown = false;
         bool sDown = false;
@@ -84,7 +84,6 @@ namespace GameScreen
                     if (dDown != true) // making sure mario stays still if left and right pressed
                     {
                         direction = -1;
-                        directionR = false;
                     }
                 }
                 if (dDown == true)
@@ -93,7 +92,6 @@ namespace GameScreen
                     if (aDown != true) // making sure mario stays still if left and right pressed
                     {
                         direction = 1;
-                        directionR = true;
                     }
                 }
             }
@@ -108,13 +106,15 @@ namespace GameScreen
             if (upDown == true)             //Mario Jump
             {
                 Debug.WriteLine("Jump");
-                mario.Jump(-10);
+                mario.Jump(-15);
             }
-
+            isRight = direction >0 ? true : false;
+           // if (direction > 0) { directionR = true;}
+            //if(direction < 0) { directionR = false;}
             //mario.DirectionX((int)(runSpeed * direction));
-            mario.VerticalMovement(blocks,(int)( runSpeed * direction));
+            mario.Movement(blocks,(int)( runSpeed * direction),isRight);
             
-                mario.Gravity(blocks);            //Run Gravity 
+
              
             
 
