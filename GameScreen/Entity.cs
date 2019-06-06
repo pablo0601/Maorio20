@@ -14,17 +14,13 @@ namespace GameScreen
         //ADD SIDE COLISION
 
         //Variable Decleration
-        int deltaY;
+        int deltaY = 0;
+        int deltaX = 0;
         public bool canJump = false;
 
         //Picture Box Stuff
         public PictureBox hitBox;
-
-        /// <summary>
-        /// Creates and applies Gravity
-        /// </summary>
-        /// <param name="blocks">list of blocks for collision</param>
-
+        
 
         /// <summary>
         /// Makes Mario Jump
@@ -32,7 +28,7 @@ namespace GameScreen
         /// <param name="speed">How much to YEET Mario up by</param>
         public void Jump(int speed)
         {
-            if (canJump == true) { deltaY = deltaY + speed; } //If Mario is able to jump, then add speed to deltaY variable (Jump)
+            if (canJump == true) deltaY = deltaY + speed;  //If Mario is able to jump, then add speed to deltaY variable (Jump)
             canJump = false; // Mario can not jump in air
         }
 
@@ -53,30 +49,42 @@ namespace GameScreen
             deltaY = deltaY + (int)1; // Number is acceleration due to gravity
             isUp = deltaY > 0 ? false : true;
 
+
             foreach (Block block in blocks)
             {
-                if (boundsY.IntersectsWith(block.hitBox.Bounds)) //If mario intersects with block
+
+                switch (isRight)
                 {
-                    boundsY.Y = boundsY.Y - (boundsY.Bottom - block.hitBox.Bounds.Y);// Move Rectangle Vertically to Checked Location
-                    deltaY = 0; // While on ground Gravity does not pull Mario through ground
-                    canJump = true; // Mario can jump on Ground
+                    case true:
+                        if (boundsX.IntersectsWith(block.hitBox.Bounds)) boundsX.X = boundsX.X - (boundsX.Right - block.hitBox.Bounds.X);
+                        break;
+                    case false:
+                        if (boundsX.IntersectsWith(block.hitBox.Bounds)) boundsX.X = block.hitBox.Left + block.hitBox.Width;
+                        break;
                 }
 
-                if (isRight == true)
+                switch (isUp)
                 {
-                    if (boundsX.IntersectsWith(block.hitBox.Bounds))
-                    {
-                        boundsX.X = boundsX.X - (boundsX.Right - block.hitBox.Bounds.X);
-                    }
-                }
-                if (isRight == false)
-                {
-                    if (boundsX.IntersectsWith(block.hitBox.Bounds)) {boundsX.X = boundsX.X - block.hitBox.Bounds.X;}
+                    case true:
+                        if (boundsY.IntersectsWith(block.hitBox.Bounds))
+                        {
+                            boundsY.Y = block.hitBox.Top + block.hitBox.Height;
+                            deltaY = 0; 
+                            canJump = true; // uncoment this line for SPIDERMAN
+                        }
+                        break;
+                    case false:
+                        
+                        if (boundsY.IntersectsWith(block.hitBox.Bounds)) //If mario intersects with block
+                        {
+                            boundsY.Y = boundsY.Y - (boundsY.Bottom - block.hitBox.Bounds.Y);//moves bounds to outside of block
+                            deltaY = 0; // While on ground Gravity does not pull Mario through ground
+                            canJump = true; // Mario can jump on Ground
+                        }
+                        break;
                 }
             }
-            hitBox.Top = boundsY.Top;    // Move mario Y to new Y location
-            hitBox.Left = boundsX.Left;  // Move mario X to new X location
-            
+            hitBox.Location = new Point(boundsX.Left, boundsY.Top);    // Move mario to rectangle location
         }
 
     }

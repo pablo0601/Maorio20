@@ -52,7 +52,7 @@
             // 
             this.Mario1.BackColor = System.Drawing.Color.Transparent;
             this.Mario1.Image = global::GameScreen.Properties.Resources.Mario1;
-            this.Mario1.Location = new System.Drawing.Point(385, 169);
+            this.Mario1.Location = new System.Drawing.Point(302, 253);
             this.Mario1.Name = "Mario1";
             this.Mario1.Size = new System.Drawing.Size(10, 15);
             this.Mario1.TabIndex = 1;
@@ -66,7 +66,7 @@
             // Wall_1
             // 
             this.Wall_1.Image = global::GameScreen.Properties.Resources.Ground;
-            this.Wall_1.Location = new System.Drawing.Point(507, 300);
+            this.Wall_1.Location = new System.Drawing.Point(443, 204);
             this.Wall_1.Name = "Wall_1";
             this.Wall_1.Size = new System.Drawing.Size(64, 64);
             this.Wall_1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;

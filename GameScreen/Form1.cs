@@ -21,7 +21,7 @@ namespace GameScreen
         bool wDown = false;
         bool leftDown = false;
         bool upDown = false;
-        double direction;
+        int direction;
         public int runSpeed = 3;
         public Block ground;
         public Block wall;
@@ -108,11 +108,9 @@ namespace GameScreen
                 Debug.WriteLine("Jump");
                 mario.Jump(-15);
             }
+
             isRight = direction >0 ? true : false;
-           // if (direction > 0) { directionR = true;}
-            //if(direction < 0) { directionR = false;}
-            //mario.DirectionX((int)(runSpeed * direction));
-            mario.Movement(blocks,(int)( runSpeed * direction),isRight);
+            mario.Movement(blocks, runSpeed * direction, isRight);
             
 
              
