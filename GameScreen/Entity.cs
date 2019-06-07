@@ -42,8 +42,12 @@ namespace GameScreen
             bool isUp = false;
             Rectangle boundsY = hitBox.Bounds; //Creates Y Rectangle around Hitbox
             Rectangle boundsX = hitBox.Bounds; //Creates X Rectangle around Hitbox
+
+            if (deltaX > 0) deltaX--;
+            if (deltaX < 0) deltaX++;
+
             boundsY.Y = boundsY.Y + deltaY;
-            boundsX.X = boundsX.X + speed;
+            boundsX.X = boundsX.X + deltaX;
 
 
             deltaY = deltaY + (int)1; // Number is acceleration due to gravity
@@ -70,7 +74,7 @@ namespace GameScreen
                         {
                             boundsY.Y = block.hitBox.Top + block.hitBox.Height;
                             deltaY = 0; 
-                            canJump = true; // uncoment this line for SPIDERMAN
+                            //canJump = true; // uncoment this line for SPIDERMAN
                         }
                         break;
                     case false:
