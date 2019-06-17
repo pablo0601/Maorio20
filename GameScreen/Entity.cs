@@ -37,14 +37,26 @@ namespace GameScreen
         /// </summary>
         /// <param name="block">The blocks and walls Mario collides with</param>
         /// <param name="speed">The Distance to move by</param>
-        public void Movement(List<Block> blocks, int speed, bool isRight)
+        public void Movement(List<Block> blocks, int speed, bool isRight, bool isMove)
         {
             bool isUp = false;
             Rectangle boundsY = hitBox.Bounds; //Creates Y Rectangle around Hitbox
             Rectangle boundsX = hitBox.Bounds; //Creates X Rectangle around Hitbox
-
-            if (deltaX > 0) deltaX--;
-            if (deltaX < 0) deltaX++;
+            deltaX = 
+                isMove ? speed :
+                deltaX > 0 ? deltaX - 1 :
+                deltaX == 0 ? deltaX :
+                deltaX + 1;
+            
+            //if (isMove == false)
+            //{
+            //    if (deltaX > 0) deltaX--;
+            //    if (deltaX < 0) deltaX++;
+            //}
+            //if(isMove == true)
+            //{
+            //    deltaX = speed;
+            //}
 
             boundsY.Y = boundsY.Y + deltaY;
             boundsX.X = boundsX.X + deltaX;

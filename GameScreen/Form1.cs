@@ -15,6 +15,7 @@ namespace GameScreen
     {
         //Creating Variables
         public bool isRight = true;
+        bool isMove = false;
         bool aDown = false;
         bool dDown = false;
         bool sDown = false;
@@ -22,6 +23,7 @@ namespace GameScreen
         bool leftDown = false;
         bool upDown = false;
         int direction;
+        int counter = 0;
         public int runSpeed = 3;
         public Block ground;
         public Block wall;
@@ -71,10 +73,10 @@ namespace GameScreen
         // What happens when Timer Ticks
         private void timer1_Tick(object sender, EventArgs e)
         {
-
+            isMove = false;
             // if Key Pressed Manipulate Mario
-            if (mario.canJump == true)
-            {
+            //if (mario.canJump == true)
+            //{
                 //Checks the runflag and sets the walking speed accordingly
                 runSpeed = leftDown ? 6 : 3;
                 direction = 0;
@@ -84,6 +86,7 @@ namespace GameScreen
                     if (dDown != true) // making sure mario stays still if left and right pressed
                     {
                         direction = -1;
+                        isMove = true;
                     }
                 }
                 if (dDown == true)
@@ -92,9 +95,10 @@ namespace GameScreen
                     if (aDown != true) // making sure mario stays still if left and right pressed
                     {
                         direction = 1;
+                        isMove = true;
                     }
                 }
-            }
+            //}
             if (wDown == true)              //No Function in Mario, Just added if Needed
             {
                 Debug.WriteLine("W");
@@ -110,7 +114,7 @@ namespace GameScreen
             }
 
             isRight = direction >0 ? true : false;
-            mario.Movement(blocks, runSpeed * direction, isRight);
+            mario.Movement(blocks, runSpeed * direction, isRight,isMove);
             
 
              
