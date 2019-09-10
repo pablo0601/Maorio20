@@ -23,7 +23,7 @@ namespace GameScreen
         bool leftDown = false;
         bool upDown = false;
         int direction;
-        int counter = 0;
+        //int counter = 0;
         public int runSpeed = 3;
         public Block ground;
         public Block wall;
@@ -74,15 +74,13 @@ namespace GameScreen
         private void timer1_Tick(object sender, EventArgs e)
         {
             isMove = false;
-            // if Key Pressed Manipulate Mario
-            //if (mario.canJump == true)
-            //{
-                //Checks the runflag and sets the walking speed accordingly
+// if Key Pressed Manipulate Mario
+//Checks the runflag and sets the walking speed accordingly
                 runSpeed = leftDown ? 6 : 3;
                 direction = 0;
                 if (aDown == true)
                 {
-                    Debug.WriteLine("A");
+                    //Debug.WriteLine("A"); //Debug Line
                     if (dDown != true) // making sure mario stays still if left and right pressed
                     {
                         direction = -1;
@@ -91,30 +89,30 @@ namespace GameScreen
                 }
                 if (dDown == true)
                 {
-                    Debug.WriteLine("D");
+                    //Debug.WriteLine("D"); //Debug Line
                     if (aDown != true) // making sure mario stays still if left and right pressed
-                    {
-                        direction = 1;
-                        isMove = true;
-                    }
+                        {
+                            direction = 1;
+                            isMove = true;
+                        }
                 }
             //}
             if (wDown == true)              //No Function in Mario, Just added if Needed
             {
-                Debug.WriteLine("W");
+                //Debug.WriteLine("W"); //Debug Line
             }
             if (sDown == true)              //Mario Down Pipe
             {
-                Debug.WriteLine("S");
+                //Debug.WriteLine("S"); //Debug Line
             }
             if (upDown == true)             //Mario Jump
             {
-                Debug.WriteLine("Jump");
+                //Debug.WriteLine("Jump"); //Debug Line
                 mario.Jump(-15);
             }
 
-            isRight = direction >0 ? true : false;
-            mario.Movement(blocks, runSpeed * direction, isRight,isMove);
+
+            mario.Movement(blocks, runSpeed * direction, isMove);
             
 
              
