@@ -41,18 +41,21 @@ namespace GameScreen
         /// <param name="speed">The Distance to move by</param>
         public void Movement(List<Block> blocks, int RunSpeed, bool isMove)
         {
+
             bool isUp = false;
-            Rectangle boundsY = hitBox.Bounds; //Creates Y Rectangle around Hitbox
-            Rectangle boundsX = hitBox.Bounds; //Creates X Rectangle around Hitbox
+            //Rectangle boundsY = hitBox.Bounds; //Creates Y Rectangle around Hitbox
+            //Rectangle boundsX = hitBox.Bounds; //Creates X Rectangle around Hitbox
+            Rectangle bounds = hitBox.Bounds;
+            
             deltaX = 
                 isMove ? RunSpeed :          //is Mario Moving?
                 deltaX > 0 ? deltaX - 1 :    //is Mario moving Left?
                 deltaX == 0 ? deltaX :       //
                 deltaX + 1;
 
-            boundsY.Y = boundsY.Y + deltaY;
-            boundsX.X = boundsX.X + deltaX;
-
+            bounds.Y = bounds.Y + deltaY;
+            bounds.X = bounds.X + deltaX;
+            
 
             deltaY = deltaY + (int)1; // Number is acceleration due to gravity
             isUp = deltaY > 0 ? false : true;
@@ -71,26 +74,21 @@ namespace GameScreen
 
             foreach (Block block in blocks)
             {
-                if (block.hitBox.Location.X > (boundsX.Location.X + 100) || (block.hitBox.Location.X < (boundsX.Location.X - 100)))
-                    
-                    
-                    
-                    
-                    
-                    //LR Collision
-                    switch (RunSpeed)
-                    {
-                    case (3):
-                        if (boundsX.IntersectsWith(block.hitBox.Bounds)) boundsX.X = boundsX.X - (boundsX.Right - block.hitBox.Bounds.X);
-                        break;
-                    case (6):
-                        if (boundsX.IntersectsWith(block.hitBox.Bounds)) boundsX.X = boundsX.X - (boundsX.Right - block.hitBox.Bounds.X);
-                        break;
-                    case (-3):
-                        if (boundsX.IntersectsWith(block.hitBox.Bounds)) boundsX.X = block.hitBox.Left + block.hitBox.Width;
-                        break;
-                    case (-6):
-                        if (boundsX.IntersectsWith(block.hitBox.Bounds)) boundsX.X = block.hitBox.Left + block.hitBox.Width;
+                
+                //LR Collision
+                switch (RunSpeed)
+                {
+                case (3):
+                    if (bounds.IntersectsWith(block.hitBox.Bounds)) bounds.X = bounds.X - (bounds.Right - block.hitBox.Bounds.X);
+                    break;
+                case (6):
+                    if (bounds.IntersectsWith(block.hitBox.Bounds)) bounds.X = bounds.X - (bounds.Right - block.hitBox.Bounds.X);
+                    break;
+                case (-3):
+                    if (bounds.IntersectsWith(block.hitBox.Bounds)) bounds.X = block.hitBox.Left + block.hitBox.Width;
+                    break;
+                case (-6):
+                    if (bounds.IntersectsWith(block.hitBox.Bounds)) bounds.X = block.hitBox.Left + block.hitBox.Width;
                         break;
 
                 }
@@ -99,25 +97,25 @@ namespace GameScreen
                 switch (isUp)
                 {
                     case true:
-                        if (boundsY.IntersectsWith(block.hitBox.Bounds))
+                        if (bounds.IntersectsWith(block.hitBox.Bounds))
                         {
-                            boundsY.Y = block.hitBox.Top + block.hitBox.Height;
+                            bounds.Y = block.hitBox.Top + block.hitBox.Height;
                             deltaY = 0;
                             //canJump = true; // uncoment this line for SPIDERMAN
                         }
                         break;
                     case false:
 
-                        if (boundsY.IntersectsWith(block.hitBox.Bounds)) //If mario intersects with block
+                        if (bounds.IntersectsWith(block.hitBox.Bounds)) //If mario intersects with block
                         {
-                            boundsY.Y = boundsY.Y - (boundsY.Bottom - block.hitBox.Bounds.Y);//moves bounds to outside of block
+                            bounds.Y = bounds.Y - (bounds.Bottom - block.hitBox.Bounds.Y);//moves bounds to outside of block
                             deltaY = 0; // While on ground Gravity does not pull Mario through ground
                             canJump = true; // Mario can jump on Ground
                         }
                         break;
                 }
             }
-            hitBox.Location = new Point(boundsX.Left, boundsY.Top);    // Move mario to rectangle location
+            hitBox.Location = (bounds.Location);    // Move mario to rectangle location
         }
 
     }
