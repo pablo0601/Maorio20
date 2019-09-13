@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,8 @@ namespace GameScreen
         //Variable Decleration
         int deltaY = 0;
         int deltaX = 0;
+        int distanceToBlockY = 0;
+        int distanceToBlockX = 0;
         public bool canJump = false;
 
         //Picture Box Stuff
@@ -76,19 +79,32 @@ namespace GameScreen
             {
                 if (bounds.IntersectsWith(block.hitBox.Bounds))
                 {
-                    if(deltaY >= 0)
+                    
+                    if(deltaY > 0)
                     {
-                        bounds.Y = bounds.Y - (deltaY - 1);
+                        distanceToBlockY =   block.hitBox.Top - hitBox.Bottom;
+                        //Debug.WriteLine(distanceToBlockY);
+                        bounds.Y = bounds.Y - (deltaY - distanceToBlockY - 1);
                         deltaY = 0;
                         canJump = true;
+                        distanceToBlockY = 0;
                     }
-                    else
+                    else if (deltaY <= 0)
                     {
-                        bounds.Y = bounds.Y - (deltaY);
+                        distanceToBlockY = block.hitBox.Bottom - hitBox.Top;
+                        bounds.Y = bounds.Y + (deltaY + distanceToBlockY +2);
+                        deltaY = -1;
                         
                         
                     }
-                    
+                    if (deltaX > 0)
+                    {
+                        distanceToBlockX = block.hitBox.Left - hitBox.Right;
+                        Debug.WriteLine(distanceToBlockX);
+                        bounds.X = bounds.X - (deltaX - distanceToBlockX - 1);
+
+                    }
+
                     //if (bounds.IntersectsWith(block.hitBox.Bounds))
                     //{
                     //    bounds.X = bounds
