@@ -77,39 +77,53 @@ namespace GameScreen
 
             foreach (Block block in blocks)
             {
+                
                 if (bounds.IntersectsWith(block.hitBox.Bounds))
                 {
-                    
-                    if(deltaY > 0)
+                    Debug.WriteLine("bounds: X: " + bounds.Left + " Y: " + bounds.Top);
+                    Debug.WriteLine("block: X: " + block.hitBox.Left + " Y: " + block.hitBox.Top);
+
+                    if (bounds.Left + block.hitBox.Left < bounds.Top + block.hitBox.Top)
                     {
-                        distanceToBlockY =   block.hitBox.Top - hitBox.Bottom;
+                        Debug.WriteLine("FIRST");
+                        distanceToBlockY = block.hitBox.Top - hitBox.Bottom;
                         //Debug.WriteLine(distanceToBlockY);
                         bounds.Y = bounds.Y - (deltaY - distanceToBlockY - 1);
                         deltaY = 0;
                         canJump = true;
                         distanceToBlockY = 0;
                     }
-                    else if (deltaY <= 0)
-                    {
-                        distanceToBlockY = block.hitBox.Bottom - hitBox.Top;
-                        bounds.Y = bounds.Y + (deltaY + distanceToBlockY +2);
-                        deltaY = -1;
-                        
-                        
-                    }
-                    if (deltaX > 0)
-                    {
-                        distanceToBlockX = block.hitBox.Left - hitBox.Right;
-                        Debug.WriteLine(distanceToBlockX);
-                        bounds.X = bounds.X - (deltaX - distanceToBlockX - 1);
 
+                    else if (bounds.Left + block.hitBox.Left > bounds.Top + block.hitBox.Top)
+                    {
+                        Debug.WriteLine("SECOND");
+                        if (deltaX > 0)
+                        {
+                            distanceToBlockX = block.hitBox.Left - hitBox.Right;
+                            //Debug.WriteLine(distanceToBlockX);
+                            bounds.X = bounds.X - (deltaX - distanceToBlockX - 1);
+
+                        }
                     }
+                    //if(bounds.Right - block.hitBox.Right < bounds.Left - block.hitBox.Right)
+                    //{
+                    //    if (deltaX < 0)
+                    //    {
+                    //        distanceToBlockX = block.hitBox.Left - hitBox.Right;
+                    //        Debug.WriteLine(distanceToBlockX);
+                    //        bounds.X = bounds.X + (deltaX - distanceToBlockX - 1);
+                    //    }
+                    //}
+
+
+
+
 
                     //if (bounds.IntersectsWith(block.hitBox.Bounds))
                     //{
                     //    bounds.X = bounds
                     //}
-                }
+                } 
                 //LR Collision
                 //switch (RunSpeed)
                 //{

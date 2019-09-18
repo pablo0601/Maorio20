@@ -66,7 +66,7 @@
             // Wall_1
             // 
             this.Wall_1.Image = global::GameScreen.Properties.Resources.Ground;
-            this.Wall_1.Location = new System.Drawing.Point(408, 231);
+            this.Wall_1.Location = new System.Drawing.Point(432, 291);
             this.Wall_1.Name = "Wall_1";
             this.Wall_1.Size = new System.Drawing.Size(64, 64);
             this.Wall_1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
