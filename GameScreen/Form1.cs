@@ -74,8 +74,8 @@ namespace GameScreen
         private void timer1_Tick(object sender, EventArgs e)
         {
             isMove = false;
-// if Key Pressed Manipulate Mario
-//Checks the runflag and sets the walking speed accordingly
+                // if Key Pressed Manipulate Mario
+                //Checks the runflag and sets the walking speed accordingly
                 runSpeed = leftDown ? 6 : 3;
                 direction = 0;
                 if (aDown == true)

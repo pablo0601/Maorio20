@@ -14,28 +14,28 @@ namespace GameScreen
         //-------------------------------------------------//
         //-------------------MOVEMENT----------------------//
         //-------------------------------------------------//
-        //Variable Decleration
-        int displacementX = 0;
-        int velocityX = 0;
 
-        int displacementY = 0;
-
-        public bool canJump = false;
-
-        //Picture Box Stuff
-        public PictureBox hitBox;
+        // Variable Decleration
+        int displacementX = 0;              //entitys displacement on the X plane
+        int displacementY = 0;              //entitys displacement on the Y plane
+        int velocityX = 0;                  //entitys velocity on the X plane
+        int velocityY = 0;
+        int gravity = 1;                    //Gravitational pull on planet Mario
+        public bool canJump = false;        //bool determining if the entity can jump
+        public PictureBox hitBox;           //picture box creating the hitbox of entitys current position
         
 
         /// <summary>
         /// Makes Mario Jump
         /// </summary>
-        /// <param name="velocityY">The velocity of marios jump</param>
+        /// <param name="velocityY">The velocity of entitys jump</param>
         public void Jump(int velocityY)
         {
-            if (canJump == true) displacementY = displacementY + velocityY;  //If Mario is able to jump, then add speed to deltaY variable (Jump)
+            if (canJump == true) displacementY = displacementY + velocityY;  //If Mario is able to jump, then add speed to displacementY variable (Jump)
             canJump = false; // Mario can not jump in air
         }
 
+        
 
 
         /// <summary>
@@ -45,28 +45,19 @@ namespace GameScreen
         /// <param name="speed">The Distance to move by</param>
         public void Movement(List<Block> blocks, int RunSpeed, bool isMove)
         {
+            //Gravity
+            velocityY = velocityY + gravity;
+            displacementY = displacementY + velocityY;
 
-            //deltaX = 
-            //    isMove ? RunSpeed :          //is Mario Moving?
-            //    deltaX > 0 ? deltaX - 1 :    //is Mario moving Left?
-            //    deltaX == 0 ? deltaX :       //
-            //    deltaX + 1;
-
-            //bounds.Y = bounds.Y + deltaY;
-            //bounds.X = bounds.X + deltaX;
-
-
-            //deltaY = deltaY + (int)1; // Number is acceleration due to gravity
-            //isUp = deltaY > 0 ? false : true;
-
-
-
-            //-----------------------------------------//
-            //--------------- COLISION ----------------//
-            //-----------------------------------------//
+            hitBox.Location.Y.Equals(hitBox.Location.Y + displacementY);
+            
 
             foreach  (Block block in blocks)
             {
+                if(block.hitBox.Bounds.IntersectsWith(hitBox.Bounds))
+                {
+
+                }
 
             }
         }
